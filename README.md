@@ -1,1 +1,1 @@
-# Lit
+It's so Lit
