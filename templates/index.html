@@ -1,10 +1,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
+<body background="http://cdn.wallpapersafari.com/76/8/KfuMcp.jpg" >
+<body>
+  <head>
    
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
     <link href="../static/css/index.css" rel="stylesheet">
@@ -12,22 +15,37 @@
     <script src="../static/js/index.js"></script>
    
   </head>
+  <h1 class="text-muted" style="position:relative;left:500px;up:100px;">Let there be Light!</h1>
+
+  <image id="imgLightOn" src="http://www.freeiconspng.com/uploads/light-bulb-5.png" style="width:100px;height:100px;position:relative;left:1000px;up:150px;visibility:hidden;">  
+
+  <image id="imgLightOff" src="http://images.clipartpanda.com/light-bulb-vector-png-15-Light-Bulb-icon.png" style="position:relative;width:100px;height:100px;left:1000px;up:150px;visibility:hidden;">
+
+  <!-- <text id="onOrOff"></text> -->
 
   <body>
 
     <div class="container">
       <div class="header">
-        <h3 class="text-muted">It's Lit</h3>
       </div>
 
       <div class="jumbotron">
+        <h3 id="motionSensingText">Motion Sensing is: On</h3>
         <button id="on" class="btn btn-lg btn-primary btn-block" type="button">ON</button>
         <button id="off" class="btn btn-lg btn-primary btn-block" type="button">OFF</button>
+
+        <button id="useMotionSensor" class="btn btn-lg btn-primary btn-block" type="button" onclick="usingMotionSensing();">Motion Sensing On</button>
+        <button id="doNotUseMotionSensor" class="btn btn-lg btn-primary btn-block" type="button" onclick="notUsingMotionSensing();">Motion Sensing Off</button>
+
+        <button id="brighten" class="btn btn-lg btn-primary btn-block" type="button" onclick="brighten();">Brighten Slowly</button>
+        <button id="dim" class="btn btn-lg btn-primary btn-block" type="button" onclick="dim();">Dim Slowly</button>
+
+        <button id="low" class="btn btn-sm btn-primary btn-block" type="button" onclick="level(60);">LOW</button>
+        <button id="med" class="btn btn-sm btn-primary btn-block" type="button" onclick="level(128);">MED</button>
+        <button id="high" class="btn btn-sm btn-primary btn-block" type="button" onclick="level(250);">HIGH</button>
+
       </form>
       </div>
-
-      
     </div>
   </body>
 </html>
-

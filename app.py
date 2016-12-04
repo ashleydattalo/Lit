@@ -1,3 +1,5 @@
+data = 'on'
+
 import logging
 from flask import Flask, render_template, json, request
 
@@ -7,11 +9,24 @@ app = Flask(__name__)
 def main():
     return render_template('index.html')
 
+@app.route('/test', methods=['GET'])
+def test1():
+	return 'on'
 
-@app.route('/index',methods=['GET'])
-def signUp():
-    #_name = request.form['/']
-    logging.info('hello')
+# @app.route('/sensorStatus', methods=['POST'])
+
+@app.route('/sensorStatus', methods=['PUT'])
+def parseRequest():
+	# logging.info(request.get_data())
+	global data
+	data = request.get_data()
+	logging.info(data)
+	return data
+
+@app.route('/sensorStatus', methods=['GET'])
+def sensorStatus():
+	global data
+	return data
 
 if __name__ == "__main__":
-    app.run(port=5002)
+    app.run(host="0.0.0.0", port=5002)
