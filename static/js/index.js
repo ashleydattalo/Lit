@@ -1,6 +1,9 @@
+var ipAddress = '129.65.221.203';
+
 $(function(){
+	console.log('on clicked')
 	$('#on').click(function(){
-		$.ajax('http://192.168.8.120/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1/state', {
+		$.ajax('http://'+ipAddress+'/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1/state', {
 		  method: 'PUT',
 		  data: '{"on":true}',
 		}).then(function(data) {
@@ -10,7 +13,8 @@ $(function(){
 		detLightStatus();
 	});
 	$('#off').click(function(){
-		$.ajax('http://192.168.8.120/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1/state', {
+		console.log('off clicked')
+		$.ajax('http://'+ipAddress+'/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1/state', {
 		  method: 'PUT',
 		  data: '{"on":false}',
 		}).then(function(data) {
@@ -22,9 +26,9 @@ $(function(){
 });
 
 function brighten() {
-	for(i = 0; i <= 254; i++) {
+	for(i = 0; i <= 254; i+=20) {
 		var str = '{"on":true,"bri": '+ i +'}'
-		$.ajax('http://192.168.8.120/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1/state', {
+		$.ajax('http://'+ipAddress+'/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1/state', {
 		  method: 'PUT',
 		  data: str,
 		}).then(function(data) {
@@ -36,9 +40,9 @@ function brighten() {
 }
 
 function dim() {
-	for(i = 254; i >= 0; i--) {
+	for(i = 254; i >= 0; i-=20) {
 		var str = '{"on":true,"bri": '+ i +'}'
-		$.ajax('http://192.168.8.120/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1/state', {
+		$.ajax('http://'+ipAddress+'/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1/state', {
 		  method: 'PUT',
 		  data: str,
 		}).then(function(data) {
@@ -51,7 +55,7 @@ function dim() {
 
 function level(bri) {
 	var str = '{"on":true,"bri": '+ bri +'}'
-	$.ajax('http://192.168.8.120/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1/state', {
+	$.ajax('http://'+ipAddress+'/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1/state', {
 	  method: 'PUT',
 	  data: str,
 	}).then(function(data) {
@@ -60,29 +64,10 @@ function level(bri) {
 	detLightStatus();
 }
 
-
-// function onOff() {
-// 	var onOff = false;
-// 	for(i = 0; i < 90; i++) {
-// 		var str = '{"on":' + onOff + '}'
-// 		$.ajax('http://192.168.8.120/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1/state', {
-// 		  method: 'PUT',
-// 		  data: str,
-// 		}).then(function(data) {
-// 			console.log('it is not lit');
-// 		    console.log(data);
-// 		});
-// 		//setTimeout(function(){}, 300)
-// 		onOff = !onOff;
-// 	}
-// 	detLightStatus();
-// }
-
-
 function detLightStatus() {
 	var state;
 	$.ajax({
-		url: 'http://192.168.8.120/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1',
+		url: 'http://'+ipAddress+'/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1',
 		type: 'GET',
 		success: function(response){
 			console.log(response);
@@ -105,12 +90,14 @@ function detLightStatus() {
 	return status;
 }
 
+
+
 function usingMotionSensing() {
 	$('#motionSensingText').text("Motion Sensing is: On");
 	$.ajax({
 	  url: '/sensorStatus',
 	  type: 'PUT',
-	  dataType: 'json',
+	  contentType: 'text',
 	  data: 'true',
 	  success: function(data) {
 	    console.log('Load was performed.');
@@ -123,7 +110,7 @@ function notUsingMotionSensing() {
 	$.ajax({
 	  url: '/sensorStatus',
 	  type: 'PUT',
-	  dataType: 'json',
+	  contentType: 'text',
 	  data: 'false',
 	  success: function(data) {
 	    console.log('Load was performed.');

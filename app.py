@@ -1,4 +1,4 @@
-data = 'on'
+data = 'true'
 
 import logging
 from flask import Flask, render_template, json, request
@@ -26,6 +26,7 @@ def parseRequest():
 @app.route('/sensorStatus', methods=['GET'])
 def sensorStatus():
 	global data
+	# res = Flask.make_response(app, data)
 	return data
 
 if __name__ == "__main__":
