@@ -10,27 +10,27 @@ GPIO.setmode(GPIO.BOARD)
 while (True):
 	
 	#if motion sensor should be used
-	GPIO.setup(16, GPIO.OUT)
+	GPIO.setup(12, GPIO.OUT)
 
 	#cleanup output
-	GPIO.output(16, 0)
+	GPIO.output(12, 0)
 
 	time.sleep(0.000002)
 
 	#send signal
-	GPIO.output(16, 1)
+	GPIO.output(12, 1)
 
 	time.sleep(0.000005)
 
-	GPIO.output(16, 0)
+	GPIO.output(12, 0)
 
-	GPIO.setup(16, GPIO.IN)
+	GPIO.setup(12, GPIO.IN)
 
-	while GPIO.input(16)==0:
+	while GPIO.input(12)==0:
 		5
 	starttime=time.time()
 
-	while GPIO.input(16)==1:
+	while GPIO.input(12)==1:
 		5
 	endtime=time.time()
 	duration=endtime-starttime
