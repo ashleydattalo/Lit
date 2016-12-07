@@ -1,9 +1,10 @@
-var ipAddress = '129.65.221.203';
+var ipAddress = '192.168.8.120';
+var id = '353ae7b31ae3fa0e173e08fe46cf7456';
 
 $(function(){
 	console.log('on clicked')
 	$('#on').click(function(){
-		$.ajax('http://'+ipAddress+'/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1/state', {
+		$.ajax('http://'+ipAddress+'/api/'+id+'/lights/1/state', {
 		  method: 'PUT',
 		  data: '{"on":true}',
 		}).then(function(data) {
@@ -14,7 +15,7 @@ $(function(){
 	});
 	$('#off').click(function(){
 		console.log('off clicked')
-		$.ajax('http://'+ipAddress+'/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1/state', {
+		$.ajax('http://'+ipAddress+'/api/'+id+'/lights/1/state', {
 		  method: 'PUT',
 		  data: '{"on":false}',
 		}).then(function(data) {
@@ -26,9 +27,9 @@ $(function(){
 });
 
 function brighten() {
-	for(i = 0; i <= 254; i+=20) {
+	for(i = 0; i <= 254; i+=10) {
 		var str = '{"on":true,"bri": '+ i +'}'
-		$.ajax('http://'+ipAddress+'/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1/state', {
+		$.ajax('http://'+ipAddress+'/api/'+id+'/lights/1/state', {
 		  method: 'PUT',
 		  data: str,
 		}).then(function(data) {
@@ -40,9 +41,9 @@ function brighten() {
 }
 
 function dim() {
-	for(i = 254; i >= 0; i-=20) {
+	for(i = 254; i >= 0; i-=10) {
 		var str = '{"on":true,"bri": '+ i +'}'
-		$.ajax('http://'+ipAddress+'/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1/state', {
+		$.ajax('http://'+ipAddress+'/api/'+id+'/lights/1/state', {
 		  method: 'PUT',
 		  data: str,
 		}).then(function(data) {
@@ -55,7 +56,7 @@ function dim() {
 
 function level(bri) {
 	var str = '{"on":true,"bri": '+ bri +'}'
-	$.ajax('http://'+ipAddress+'/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1/state', {
+	$.ajax('http://'+ipAddress+'/api/'+id+'/lights/1/state', {
 	  method: 'PUT',
 	  data: str,
 	}).then(function(data) {
@@ -67,7 +68,7 @@ function level(bri) {
 function detLightStatus() {
 	var state;
 	$.ajax({
-		url: 'http://'+ipAddress+'/api/353ae7b31ae3fa0e173e08fe46cf7456/lights/1',
+		url: 'http://'+ipAddress+'/api/'+id+'/lights/1',
 		type: 'GET',
 		success: function(response){
 			console.log(response);
