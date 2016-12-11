@@ -15,8 +15,9 @@ Get the Phillips Hue Lightbulb set up:
 Get the Website to work with your bridge and lightbulb. 
 1. After following the instructions on the website listed above, you should have the IP address and username for your bridge.
 2. Inside index.js, there should be two variables called ipAddress, and id. Change these variables to the IP Address and username for your bridge. 
-3. On the terminal, run 'python app.py'.
-4. When doing this, it should give you a URL. Enter this URL into your website and begin turning your light ON/OFF.
+3. Install Flask onto your machine. On Linux or Macs, this is just "pip install flask".
+4. On the terminal, run 'python app.py'.
+5. When doing this, it should give you a URL. Enter this URL into your website and begin turning your light ON/OFF.
 
 
 Connect Sensors to the Pis:
@@ -32,6 +33,7 @@ Set up Sensor and Pi Code:
 5. Follow step 2 for the motion2.py in the RaspberryPi2 folder (on the second Pi).
 
 Running the Code:
-1. Start server.py first. Then, start motion1.py and motion2.py (on their respective Pis). Allow ~20 seconds for the Pis to calibrate distances (stand away from them).
-2. Once finished calibrating, the light will turn on if a user walks in front of the Pi running motion1.py before motion2.py, and turn off if the reverse is true. 
+1. Install Flask onto both Pis. Just typing "pip install flask" should work.
+2. Start server.py first. Then, start motion1.py and motion2.py (on their respective Pis). Allow ~20 seconds for the Pis to calibrate distances (stand away from them).
+3. Once finished calibrating, the light will turn on if a user walks in front of the Pi running motion1.py before motion2.py, and turn off if the reverse is true. 
 
